@@ -239,7 +239,7 @@ html {
     }
   }
   
-  #myBTN {
+  #myBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 20px; /* Place the button at the bottom of the page */
@@ -259,6 +259,6 @@ html {
     font-size: 18px; /* Increase font size */
   }
   
-  #myBTN:hover {
+  #myBts:hover {
     background-color: #555; /* Add a dark-grey background on hover */
   }

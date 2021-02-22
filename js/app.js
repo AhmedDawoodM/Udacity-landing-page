@@ -17,12 +17,13 @@
  * Define Global Variables
  *
  */
-const myButton = document.getElementById('myBTN');
+const myButton = document.getElementById('myBtn');
 const sectionsElements = document.querySelectorAll('section');
 const navbarUList = document.getElementById('navbar__list');
+// change title's text
 const pageTitle = document.getElementById('landing-page-title');
 
-let navSectionList = '';
+let navList = '';
 pageTitle.textContent = `Udactiy's Landing Page Project`;
 /**
  * End Global Variables
@@ -31,21 +32,21 @@ pageTitle.textContent = `Udactiy's Landing Page Project`;
  *
  */
 // Generate navbar from sections id names we got from the querySelectorAll
-function createSectionNavbar() {
+function gernerateNavbar() {
   sectionsElements.forEach((section) => {
     // add html tags for list items
     // dataset.nav returns DOMStringMap {nav: section 1}
-    navSectionList += `<li> <a class="nav__link menu__link" href="#${section.id}" id="navli">
+    navList += `<li> <a class="nav__link menu__link" href="#${section.id}" id="navli">
           ${section.dataset.nav}</a></li>`;
   });
   // add the tags to the inner htmls
-  navbarUList.innerHTML = navSectionList;
+  navbarUList.innerHTML = navList;
 }
-createSectionNavbar();
+gernerateNavbar();
 
 // Add class 'active' to section when near top of viewport (Eye level )
 
-function addActiveClassSection(section) {
+function addActiveClass(section) {
   // get the id from the section
   const id = section.getAttribute('id');
 
@@ -54,13 +55,13 @@ function addActiveClassSection(section) {
 }
 
 //Removing the active class from the section
-function removeActiveClassSection(section) {
+function removeActiveClass(section) {
   const id = section.getAttribute('id');
   document.querySelector(`#${id}`).classList.remove('your-active-class');
 }
 
 // calcualting when the section is active
-function currentActiveSection() {
+function makeActiveSection() {
   sectionsElements.forEach((section) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
     // DOMRect object providing information about the size of an element and its position relative to the viewport.
@@ -68,14 +69,14 @@ function currentActiveSection() {
 
     let elementOffset = section.getBoundingClientRect();
     if (elementOffset.top <= 150 && elementOffset.bottom >= 150) {
-      addActiveClassSection(section);
+      addActiveClass(section);
     } else {
-      removeActiveClassSection(section);
+      removeActiveClass(section);
     }
   });
 }
 // event listener to the dom itself so
-document.addEventListener('scroll', currentActiveSection);
+document.addEventListener('scroll', makeActiveSection);
 
 // get a button to scroll back to top of the page
 //https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
@@ -93,12 +94,12 @@ function scrollFunction() {
 }
 
 // When the user clicks on the button, scroll to the top of the document
-function resetNavigationFunction() {
+function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
-myButton.addEventListener('click', resetNavigationFunction);
+myButton.addEventListener('click', topFunction);
 
 let navbar = document.getElementById('navbar').querySelectorAll('li');
 
